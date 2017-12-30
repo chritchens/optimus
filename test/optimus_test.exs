@@ -486,7 +486,7 @@ defmodule OptimusTest do
     )
 
     assert {:ok, _} = Optimus.parse(optimus, ~w{a1})
-    assert {:error, _} = Optimus.parse(optimus, ~w{})
+    assert :help = Optimus.parse(optimus, ~w{})
   end
 
   test "parse: missing required options" do
@@ -497,7 +497,13 @@ defmodule OptimusTest do
     )
 
     assert {:ok, _} = Optimus.parse(optimus, ~w{-f a1})
-    assert {:error, _} = Optimus.parse(optimus, ~w{})
+    assert :help = Optimus.parse(optimus, ~w{})
+  end
+
+  test "parse: missing options" do
+    {:ok, optimus} = Optimus.new([])
+
+    assert :help = Optimus.parse(optimus, ~w"")
   end
 
   test "parse: check subcommand" do

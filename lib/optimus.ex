@@ -155,6 +155,7 @@ defmodule Optimus do
       _ -> {:error, ["invalid subcommand: #{Enum.join(subcommand, " ")}"]}
     end
   end
+  defp parse_specials(_, []), do: :help
   defp parse_specials(_, _), do: :ok
 
   defp find_exact_subcommand(optimus, subcommand, subcommand_path \\ [])
