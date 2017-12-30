@@ -147,6 +147,7 @@ defmodule Optimus do
   end
 
   defp parse_specials(_, ["--version"]), do: :version
+  defp parse_specials(_, ["-h"]), do: :help
   defp parse_specials(_, ["--help"]), do: :help
   defp parse_specials(optimus, ["help" | subcommand]) do
     case find_exact_subcommand(optimus, subcommand) do
